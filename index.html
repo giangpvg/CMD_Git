@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Git & GitHub Commands Cheatsheet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #f7f9fa;
+      --card-bg: #ffffff;
+      --border-color: #222222;
+      --text-color: #111111;
+      --text-muted: #555555;
+      --code-bg: #f0f3f6;
+      --accent-color: #0969da;
+      --success-color: #1a7f37;
+      --font-hand: 'Comic Neue', cursive, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-hand);
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-size: 1.15rem;
+      line-height: 1.5;
+      padding: 2.5rem 1rem;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    header h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--text-color);
+      margin-bottom: 0.4rem;
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    /* Controls Bar */
+    .controls-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .toggle-all-btns {
+      display: flex;
+      gap: 0.6rem;
+    }
+
+    .btn-action {
+      font-family: var(--font-hand);
+      font-size: 1rem;
+      font-weight: 700;
+      background: #ffffff;
+      border: 2px solid var(--border-color);
+      padding: 0.4rem 0.9rem;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      transition: all 0.15s ease;
+    }
+
+    .btn-action:hover {
+      background: #f0f2f5;
+      transform: translateY(-1px);
+    }
+
+    .search-box {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 0.6rem 1.1rem;
+      font-size: 1.1rem;
+      font-family: var(--font-hand);
+      border-radius: 10px;
+      border: 2px solid var(--border-color);
+      background-color: var(--card-bg);
+      color: var(--text-color);
+      outline: none;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    }
+
+    .search-box input:focus {
+      border-color: var(--accent-color);
+    }
+
+    /* Collapsible Group (Details / Summary) */
+    details.group-block {
+      margin-bottom: 1.8rem;
+    }
+
+    summary.group-summary {
+      font-size: 1.35rem;
+      font-weight: 700;
+      padding: 0.6rem 0.8rem;
+      cursor: pointer;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-radius: 10px;
+      transition: background-color 0.15s ease;
+      list-style: none; /* Remove default arrow */
+    }
+
+    summary.group-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary.group-summary:hover {
+      background-color: rgba(0, 0, 0, 0.04);
+    }
+
+    /* Custom Toggle Arrow icon */
+    .arrow-icon {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      transition: transform 0.2s ease;
+      transform: rotate(-90deg); /* Collapsed state */
+    }
+
+    details[open] summary .arrow-icon {
+      transform: rotate(0deg); /* Expanded state */
+    }
+
+    /* Sketch Card Table Styling */
+    .sketch-table-card {
+      background-color: var(--card-bg);
+      border: 2px solid var(--border-color);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+      margin-top: 0.8rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    th {
+      font-size: 1.2rem;
+      font-weight: 700;
+      padding: 0.9rem 1.2rem;
+      border-bottom: 2px solid var(--border-color);
+      border-right: 2px solid var(--border-color);
+      background-color: #fafafa;
+      text-align: center;
+    }
+
+    th:last-child {
+      border-right: none;
+    }
+
+    td {
+      padding: 0.9rem 1.2rem;
+      border-bottom: 1.5px solid var(--border-color);
+      border-right: 2px solid var(--border-color);
+      vertical-align: middle;
+      font-size: 1.1rem;
+    }
+
+    td:last-child {
+      border-right: none;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Column Widths */
+    .col-cmd { width: 34%; }
+    .col-ex { width: 36%; }
+    .col-desc { width: 30%; }
+
+    /* Command Cell with Inline Copy Icon */
+    .cmd-cell {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+    }
+
+    .cmd-code {
+      font-family: 'Fira Code', monospace;
+      font-size: 1rem;
+      color: #000000;
+    }
+
+    .ex-code {
+      font-family: 'Fira Code', monospace;
+      font-size: 1rem;
+      color: #1a0dab;
+    }
+
+    /* Copy Button Styled Like Sketch Box */
+    .copy-icon-btn {
+      background: #f0f2f5;
+      border: 1.5px solid #333;
+      border-radius: 6px;
+      padding: 3px 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+      color: #333;
+      position: relative;
+    }
+
+    .copy-icon-btn:hover {
+      background: #e2e5e9;
+      transform: scale(1.08);
+      border-color: #000;
+    }
+
+    .copy-icon-btn.copied {
+      background: var(--success-color);
+      border-color: var(--success-color);
+      color: #ffffff;
+    }
+
+    .copy-icon-btn svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* Tooltip */
+    .copy-icon-btn::after {
+      content: 'Copy';
+      position: absolute;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #222;
+      color: #fff;
+      font-size: 0.75rem;
+      padding: 2px 6px;
+      border-radius: 4px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+      white-space: nowrap;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .copy-icon-btn:hover::after {
+      opacity: 1;
+    }
+
+    .copy-icon-btn.copied::after {
+      content: 'Đã sao chép!';
+      opacity: 1;
+      background: var(--success-color);
+    }
+
+    footer {
+      text-align: center;
+      color: var(--text-muted);
+      margin-top: 2.5rem;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Bảng Lệnh Git & GitHub (Có Thể Thu Gọn)</h1>
+      <p>Nhấp vào mũi tên ▼ để mở rộng hoặc thu gọn từng nhóm câu lệnh</p>
+    </header>
+
+    <div class="controls-bar">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="🔍 Tìm kiếm câu lệnh (ví dụ: add, commit, push...)...">
+      </div>
+      <div class="toggle-all-btns">
+        <button class="btn-action" onclick="setAllDetails(true)">▼ Mở tất cả</button>
+        <button class="btn-action" onclick="setAllDetails(false)">▶ Thu gọn tất cả</button>
+      </div>
+    </div>
+
+    <!-- Group 1 -->
+    <details class="group-block" open>
+      <summary class="group-summary">
+        <svg class="arrow-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
+        1. Cấu Hình Ban Đầu & Khởi Tạo Dự Án
+      </summary>
+      <div class="sketch-table-card">
+        <table>
+          <thead>
+            <tr>
+              <th class="col-cmd">câu lệnh chung</th>
+              <th class="col-ex">Ví dụ</th>
+              <th class="col-desc">Ý nghĩa</th>
+            </tr>
+          </thead>
+          <tbody class="command-table">
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">git config --global</span>
+                  <button class="copy-icon-btn" onclick="copyText('git config --global user.name &quot;Nguyen Van A&quot;', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">git config --global user.name "Nguyen Van A"</span></td>
+              <td>Cấu hình tên người dùng trên máy local</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">git config --global</span>
+                  <button class="copy-icon-btn" onclick="copyText('git config --global user.email &quot;a@example.com&quot;', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">git config --global user.email "a@example.com"</span></td>
+              <td>Cấu hình email người dùng trên máy local</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">git init</span>
+                  <button class="copy-icon-btn" onclick="copyText('git init', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">git init</span></td>
+              <td>Khởi tạo kho chứa Git mới tại thư mục</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">git clone</span>
+                  <button class="copy-icon-btn" onclick="copyText('git clone https://github.com/user/repo.git', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">git clone https://github.com/user/repo.git</span></td>
+              <td>Sao chép repository từ GitHub về máy local</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+
+    <!-- Group 2 -->
+    <details class="group-block" open>
+      <summary class="group-summary">
+        <svg class="arrow-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
+        2. Quy Trình Làm Việc Cơ Bản (Workflow)
+      </summary>
+      <div class="sketch-table-card">
+        <table>
+          <thead>
+            <tr>
+              <th class="col-cmd">câu lệnh chung</th>
+              <th class="col-ex">Ví dụ</th>
+              <th class="col-desc">Ý nghĩa</th>
+            </tr>
+          </thead>
+          <tbody class="command-table">
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">git status</span>
+                  <button class="copy-icon-btn" onclick="copyText('git status', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">git status</span></td>
+              <td>Kiểm tra trạng thái các file (Modified, Staged, Untracked)</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">git add</span>
+                  <button class="copy-icon-btn" onclick="copyText('git add app.py', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">git add app.py</span></td>
+              <td>Thêm file `app.py` vào Staging Area</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">git add .</span>
+                  <button class="copy-icon-btn" onclick="copyText('git add .', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">git add .</span></td>
+              <td>Thêm tất cả các file đã thay đổi vào Staging Area</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">git commit -m</span>
+                  <button class="copy-icon-btn" onclick="copyText('git commit -m &quot;commit&quot;', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">git commit -m "commit"</span></td>
+              <td>Lưu phiên bản (commit) kèm thông điệp mô tả</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">git log</span>
+                  <button class="copy-icon-btn" onclick="copyText('git log --oneline', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">git log --oneline</span></td>
+              <td>Xem lịch sử các lần commit dạng 1 dòng ngắn gọn</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">git diff</span>
+                  <button class="copy-icon-btn" onclick="copyText('git diff', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">git diff</span></td>
+              <td>Xem chi tiết nội dung thay đổi chưa add</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+
+    <!-- Group 3 -->
+    <details class="group-block" open>
+      <summary class="group-summary">
+        <svg class="arrow-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
+        3. Quản Lý Nhánh (Branching & Merging)
+      </summary>
+      <div class="sketch-table-card">
+        <table>
+          <thead>
+            <tr>
+              <th class="col-cmd">câu lệnh chung</th>
+              <th class="col-ex">Ví dụ</th>
+              <th class="col-desc">Ý nghĩa</th>
+            </tr>
+          </thead>
+          <tbody class="command-table">
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">git branch</span>
+                  <button class="copy-icon-btn" onclick="copyText('git branch', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">git branch</span></td>
+              <td>Xem danh sách các nhánh hiện có</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">git branch</span>
+                  <button class="copy-icon-btn" onclick="copyText('git branch dev', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">git branch dev</span></td>
+              <td>Tạo nhánh mới có tên `dev`</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">git checkout</span>
+                  <button class="copy-icon-btn" onclick="copyText('git checkout main', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">git checkout main</span></td>
+              <td>Chuyển sang làm việc ở nhánh `main`</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">git checkout -b</span>
+                  <button class="copy-icon-btn" onclick="copyText('git checkout -b dev', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">git checkout -b dev</span></td>
+              <td>Tạo nhánh mới tên `dev` và chuyển sang ngay</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">git switch -c</span>
+                  <button class="copy-icon-btn" onclick="copyText('git switch -c dev', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">git switch -c dev</span></td>
+              <td>(Cú pháp mới) Tạo và chuyển sang nhánh `dev`</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">git merge</span>
+                  <button class="copy-icon-btn" onclick="copyText('git merge dev', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">git merge dev</span></td>
+              <td>Gộp nhánh `dev` vào nhánh hiện tại</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">git branch -d</span>
+                  <button class="copy-icon-btn" onclick="copyText('git branch -d dev', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">git branch -d dev</span></td>
+              <td>Xóa nhánh `dev` sau khi đã gộp</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+
+    <!-- Group 4 -->
+    <details class="group-block" open>
+      <summary class="group-summary">
+        <svg class="arrow-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
+        4. Tương Tác Với GitHub (Remote Operations)
+      </summary>
+      <div class="sketch-table-card">
+        <table>
+          <thead>
+            <tr>
+              <th class="col-cmd">câu lệnh chung</th>
+              <th class="col-ex">Ví dụ</th>
+              <th class="col-desc">Ý nghĩa</th>
+            </tr>
+          </thead>
+          <tbody class="command-table">
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">git remote add</span>
+                  <button class="copy-icon-btn" onclick="copyText('git remote add origin https://github.com/user/repo.git', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">git remote add origin &lt;URL&gt;</span></td>
+              <td>Liên kết kho chứa local với repository trên GitHub</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">git remote -v</span>
+                  <button class="copy-icon-btn" onclick="copyText('git remote -v', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">git remote -v</span></td>
+              <td>Xem danh sách các kho chứa từ xa đã liên kết</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">git push -u</span>
+                  <button class="copy-icon-btn" onclick="copyText('git push -u origin main', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">git push -u origin main</span></td>
+              <td>Đẩy code từ máy local lên kho chứa GitHub lần đầu</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">git push</span>
+                  <button class="copy-icon-btn" onclick="copyText('git push', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">git push</span></td>
+              <td>Đẩy các commit mới nhất lên GitHub</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">git pull</span>
+                  <button class="copy-icon-btn" onclick="copyText('git pull origin main', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">git pull origin main</span></td>
+              <td>Kéo dữ liệu mới nhất từ GitHub về máy và tự động gộp</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">git fetch</span>
+                  <button class="copy-icon-btn" onclick="copyText('git fetch', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">git fetch</span></td>
+              <td>Tải thông tin mới nhất từ GitHub về (chưa gộp)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+
+    <!-- Group 5 -->
+    <details class="group-block" open>
+      <summary class="group-summary">
+        <svg class="arrow-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
+        5. Hoàn Tác & Phục Hồi (Undo & Reset)
+      </summary>
+      <div class="sketch-table-card">
+        <table>
+          <thead>
+            <tr>
+              <th class="col-cmd">câu lệnh chung</th>
+              <th class="col-ex">Ví dụ</th>
+              <th class="col-desc">Ý nghĩa</th>
+            </tr>
+          </thead>
+          <tbody class="command-table">
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">git restore</span>
+                  <button class="copy-icon-btn" onclick="copyText('git restore app.py', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">git restore app.py</span></td>
+              <td>Hủy bỏ các thay đổi chưa `add` của file `app.py`</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">git restore --staged</span>
+                  <button class="copy-icon-btn" onclick="copyText('git restore --staged app.py', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">git restore --staged app.py</span></td>
+              <td>Đưa file `app.py` từ Staging Area về Unstaged</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">git reset --soft</span>
+                  <button class="copy-icon-btn" onclick="copyText('git reset --soft HEAD~1', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">git reset --soft HEAD~1</span></td>
+              <td>Hủy commit gần nhất nhưng vẫn giữ nguyên code thay đổi</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">git reset --hard</span>
+                  <button class="copy-icon-btn" onclick="copyText('git reset --hard HEAD~1', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">git reset --hard HEAD~1</span></td>
+              <td>Hủy hoàn toàn commit gần nhất và toàn bộ code thay đổi</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">git revert</span>
+                  <button class="copy-icon-btn" onclick="copyText('git revert a1b2c3d', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">git revert a1b2c3d</span></td>
+              <td>Tạo commit mới để đảo ngược thay đổi của commit `a1b2c3d`</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+
+    <!-- Group 6 -->
+    <details class="group-block" open>
+      <summary class="group-summary">
+        <svg class="arrow-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
+        6. Lưu Tạm Thay Đổi (Stash)
+      </summary>
+      <div class="sketch-table-card">
+        <table>
+          <thead>
+            <tr>
+              <th class="col-cmd">câu lệnh chung</th>
+              <th class="col-ex">Ví dụ</th>
+              <th class="col-desc">Ý nghĩa</th>
+            </tr>
+          </thead>
+          <tbody class="command-table">
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">git stash</span>
+                  <button class="copy-icon-btn" onclick="copyText('git stash', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">git stash</span></td>
+              <td>Tạm thời cất giấu các thay đổi chưa commit</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">git stash pop</span>
+                  <button class="copy-icon-btn" onclick="copyText('git stash pop', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">git stash pop</span></td>
+              <td>Lấy lại và áp dụng thay đổi đã cất giấu gần nhất</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">git stash list</span>
+                  <button class="copy-icon-btn" onclick="copyText('git stash list', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">git stash list</span></td>
+              <td>Xem danh sách tất cả các lần cất giấu (stash)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+
+    <footer>
+      <p>Git Commands Cheatsheet • Giao diện sạch đẹp & Không chứa Emoji Icon</p>
+    </footer>
+  </div>
+
+  <script>
+    function copyText(text, btn) {
+      navigator.clipboard.writeText(text).then(() => {
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.classList.remove('copied');
+        }, 1500);
+      }).catch(err => {
+        console.error('Lỗi khi sao chép:', err);
+      });
+    }
+
+    function setAllDetails(openState) {
+      document.querySelectorAll('details.group-block').forEach(el => {
+        el.open = openState;
+      });
+    }
+
+    // Filter functionality
+    document.getElementById('searchInput').addEventListener('input', function(e) {
+      const term = e.target.value.toLowerCase();
+      
+      document.querySelectorAll('details.group-block').forEach(block => {
+        const rows = block.querySelectorAll('.command-table tr');
+        let hasMatch = false;
+
+        rows.forEach(row => {
+          const text = row.innerText.toLowerCase();
+          const match = text.includes(term);
+          row.style.display = match ? '' : 'none';
+          if (match) hasMatch = true;
+        });
+
+        if (term !== '') {
+          block.style.display = hasMatch ? '' : 'none';
+          if (hasMatch) block.open = true; // Auto expand when searching
+        } else {
+          block.style.display = '';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
