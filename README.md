@@ -1,4 +1,4 @@
-# Bảng Lệnh Git & GitHub Cơ Bản
+# Bảng Tổng Hợp Lệnh Git & GitHub Cơ Bản
 
 Tài liệu tra cứu các lệnh Git & GitHub.
 
@@ -85,22 +85,22 @@ Tài liệu tra cứu các lệnh Git & GitHub.
 
 ---
 
-## Khối Code Đẩy Dự Án Lên GitHub
+## Các Bước Đẩy Dự Án Lên GitHub
 
 ```bash
 # 1. Khởi tạo kho chứa cục bộ
 git init
 
 # 2. Thêm file vào Staging Area
-git add app.py
+git add .
 
 # 3. Tạo commit
-git commit -m "commit"
+git commit -m "docs: add collapsible git cheatsheet"
 
 # 4. Đổi tên nhánh chính
 git branch -M main
 
-# 5. Liên kết với GitHub
+# 5. Liên kết với kho chứa trên GitHub
 git remote add origin https://github.com/USERNAME/REPOSITORY.git
 
 # 6. Đẩy code lên GitHub
