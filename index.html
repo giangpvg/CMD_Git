@@ -30,23 +30,23 @@
       font-family: var(--font-hand);
       background-color: var(--bg-color);
       color: var(--text-color);
-      font-size: 1.15rem;
-      line-height: 1.5;
-      padding: 2.5rem 1rem;
+      font-size: 0.95rem;
+      line-height: 1.4;
+      padding: 1.5rem 1rem;
     }
 
     .container {
-      max-width: 1000px;
+      max-width: 960px;
       margin: 0 auto;
     }
 
     header {
       text-align: center;
-      margin-bottom: 2rem;
+      margin-bottom: 1.2rem;
     }
 
     header h1 {
-      font-size: 2.4rem;
+      font-size: 1.75rem;
       font-weight: 700;
       color: var(--text-color);
     }
@@ -56,26 +56,26 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.2rem;
       flex-wrap: wrap;
-      gap: 1rem;
+      gap: 0.8rem;
     }
 
     .toggle-all-btns {
       display: flex;
-      gap: 0.6rem;
+      gap: 0.5rem;
     }
 
     .btn-action {
       font-family: var(--font-hand);
-      font-size: 1rem;
+      font-size: 0.9rem;
       font-weight: 700;
       background: #ffffff;
-      border: 2px solid var(--border-color);
-      padding: 0.4rem 0.9rem;
-      border-radius: 10px;
+      border: 1.5px solid var(--border-color);
+      padding: 0.3rem 0.7rem;
+      border-radius: 8px;
       cursor: pointer;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
       transition: all 0.15s ease;
     }
 
@@ -86,20 +86,20 @@
 
     .search-box {
       flex: 1;
-      min-width: 280px;
+      min-width: 250px;
     }
 
     .search-box input {
       width: 100%;
-      padding: 0.6rem 1.1rem;
-      font-size: 1.1rem;
+      padding: 0.45rem 0.9rem;
+      font-size: 0.95rem;
       font-family: var(--font-hand);
-      border-radius: 10px;
-      border: 2px solid var(--border-color);
+      border-radius: 8px;
+      border: 1.5px solid var(--border-color);
       background-color: var(--card-bg);
       color: var(--text-color);
       outline: none;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.03);
     }
 
     .search-box input:focus {
@@ -108,19 +108,19 @@
 
     /* Collapsible Group (Details / Summary) */
     details.group-block {
-      margin-bottom: 1.8rem;
+      margin-bottom: 1.1rem;
     }
 
     summary.group-summary {
-      font-size: 1.35rem;
+      font-size: 1.12rem;
       font-weight: 700;
-      padding: 0.6rem 0.8rem;
+      padding: 0.4rem 0.6rem;
       cursor: pointer;
       user-select: none;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      border-radius: 10px;
+      gap: 0.4rem;
+      border-radius: 8px;
       transition: background-color 0.15s ease;
       list-style: none; /* Remove default arrow */
     }
@@ -136,8 +136,8 @@
     /* Custom Toggle Arrow icon */
     .arrow-icon {
       display: inline-block;
-      width: 16px;
-      height: 16px;
+      width: 14px;
+      height: 14px;
       transition: transform 0.2s ease;
       transform: rotate(-90deg); /* Collapsed state */
     }
@@ -149,11 +149,11 @@
     /* Sketch Card Table Styling */
     .sketch-table-card {
       background-color: var(--card-bg);
-      border: 2px solid var(--border-color);
-      border-radius: 18px;
+      border: 1.5px solid var(--border-color);
+      border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.06);
-      margin-top: 0.8rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+      margin-top: 0.5rem;
     }
 
     table {
@@ -163,11 +163,11 @@
     }
 
     th {
-      font-size: 1.2rem;
+      font-size: 1rem;
       font-weight: 700;
-      padding: 0.9rem 1.2rem;
-      border-bottom: 2px solid var(--border-color);
-      border-right: 2px solid var(--border-color);
+      padding: 0.55rem 0.8rem;
+      border-bottom: 1.5px solid var(--border-color);
+      border-right: 1.5px solid var(--border-color);
       background-color: #fafafa;
       text-align: center;
     }
@@ -177,11 +177,11 @@
     }
 
     td {
-      padding: 0.9rem 1.2rem;
-      border-bottom: 1.5px solid var(--border-color);
-      border-right: 2px solid var(--border-color);
+      padding: 0.55rem 0.8rem;
+      border-bottom: 1px solid var(--border-color);
+      border-right: 1.5px solid var(--border-color);
       vertical-align: middle;
-      font-size: 1.1rem;
+      font-size: 0.95rem;
     }
 
     td:last-child {
@@ -192,37 +192,38 @@
       border-bottom: none;
     }
 
-    /* Column Widths */
-    .col-cmd { width: 34%; }
-    .col-ex { width: 36%; }
-    .col-desc { width: 30%; }
+    /* Column Widths - Narrowed 'Ví dụ' column */
+    .col-cmd { width: 35%; }
+    .col-ex { width: 28%; }
+    .col-desc { width: 37%; }
 
     /* Command Cell with Inline Copy Icon */
     .cmd-cell {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.4rem;
       font-weight: 700;
     }
 
     .cmd-code {
       font-family: 'Fira Code', monospace;
-      font-size: 1rem;
+      font-size: 0.88rem;
       color: #000000;
     }
 
     .ex-code {
       font-family: 'Fira Code', monospace;
-      font-size: 1rem;
+      font-size: 0.88rem;
       color: #1a0dab;
+      word-break: break-word;
     }
 
     /* Copy Button Styled Like Sketch Box */
     .copy-icon-btn {
       background: #f0f2f5;
-      border: 1.5px solid #333;
-      border-radius: 6px;
-      padding: 3px 6px;
+      border: 1.2px solid #333;
+      border-radius: 5px;
+      padding: 2px 5px;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
@@ -245,8 +246,8 @@
     }
 
     .copy-icon-btn svg {
-      width: 14px;
-      height: 14px;
+      width: 12px;
+      height: 12px;
     }
 
     /* Tooltip */
@@ -258,8 +259,8 @@
       transform: translateX(-50%);
       background: #222;
       color: #fff;
-      font-size: 0.75rem;
-      padding: 2px 6px;
+      font-size: 0.7rem;
+      padding: 2px 5px;
       border-radius: 4px;
       opacity: 0;
       pointer-events: none;
@@ -281,8 +282,8 @@
     footer {
       text-align: center;
       color: var(--text-muted);
-      margin-top: 2.5rem;
-      font-size: 1rem;
+      margin-top: 1.8rem;
+      font-size: 0.88rem;
     }
   </style>
 </head>
