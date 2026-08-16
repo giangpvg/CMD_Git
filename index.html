@@ -192,7 +192,7 @@
       border-bottom: none;
     }
 
-    /* Column Widths - Narrowed 'Ví dụ' column */
+    /* Column Widths */
     .col-cmd { width: 35%; }
     .col-ex { width: 28%; }
     .col-desc { width: 37%; }
@@ -324,7 +324,7 @@
               <td>
                 <div class="cmd-cell">
                   <span class="cmd-code">git config --global</span>
-                  <button class="copy-icon-btn" onclick="copyText('git config --global user.name &quot;Nguyen Van A&quot;', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
               <td><span class="ex-code">git config --global user.name "Nguyen Van A"</span></td>
@@ -334,7 +334,7 @@
               <td>
                 <div class="cmd-cell">
                   <span class="cmd-code">git config --global</span>
-                  <button class="copy-icon-btn" onclick="copyText('git config --global user.email &quot;a@example.com&quot;', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
               <td><span class="ex-code">git config --global user.email "a@example.com"</span></td>
@@ -344,7 +344,7 @@
               <td>
                 <div class="cmd-cell">
                   <span class="cmd-code">git init</span>
-                  <button class="copy-icon-btn" onclick="copyText('git init', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
               <td><span class="ex-code">git init</span></td>
@@ -354,7 +354,7 @@
               <td>
                 <div class="cmd-cell">
                   <span class="cmd-code">git clone</span>
-                  <button class="copy-icon-btn" onclick="copyText('git clone https://github.com/user/repo.git', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
               <td><span class="ex-code">git clone https://github.com/user/repo.git</span></td>
@@ -385,7 +385,7 @@
               <td>
                 <div class="cmd-cell">
                   <span class="cmd-code">git status</span>
-                  <button class="copy-icon-btn" onclick="copyText('git status', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
               <td><span class="ex-code">git status</span></td>
@@ -395,7 +395,7 @@
               <td>
                 <div class="cmd-cell">
                   <span class="cmd-code">git add</span>
-                  <button class="copy-icon-btn" onclick="copyText('git add app.py', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
               <td><span class="ex-code">git add app.py</span></td>
@@ -405,7 +405,7 @@
               <td>
                 <div class="cmd-cell">
                   <span class="cmd-code">git add .</span>
-                  <button class="copy-icon-btn" onclick="copyText('git add .', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
               <td><span class="ex-code">git add .</span></td>
@@ -415,7 +415,7 @@
               <td>
                 <div class="cmd-cell">
                   <span class="cmd-code">git commit -m</span>
-                  <button class="copy-icon-btn" onclick="copyText('git commit -m &quot;commit&quot;', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
               <td><span class="ex-code">git commit -m "commit"</span></td>
@@ -425,7 +425,7 @@
               <td>
                 <div class="cmd-cell">
                   <span class="cmd-code">git log</span>
-                  <button class="copy-icon-btn" onclick="copyText('git log --oneline', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
               <td><span class="ex-code">git log --oneline</span></td>
@@ -435,7 +435,7 @@
               <td>
                 <div class="cmd-cell">
                   <span class="cmd-code">git diff</span>
-                  <button class="copy-icon-btn" onclick="copyText('git diff', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
               <td><span class="ex-code">git diff</span></td>
@@ -466,7 +466,7 @@
               <td>
                 <div class="cmd-cell">
                   <span class="cmd-code">git branch</span>
-                  <button class="copy-icon-btn" onclick="copyText('git branch', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
               <td><span class="ex-code">git branch</span></td>
@@ -476,7 +476,7 @@
               <td>
                 <div class="cmd-cell">
                   <span class="cmd-code">git branch</span>
-                  <button class="copy-icon-btn" onclick="copyText('git branch dev', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
               <td><span class="ex-code">git branch dev</span></td>
@@ -486,7 +486,7 @@
               <td>
                 <div class="cmd-cell">
                   <span class="cmd-code">git checkout</span>
-                  <button class="copy-icon-btn" onclick="copyText('git checkout main', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
               <td><span class="ex-code">git checkout main</span></td>
@@ -496,7 +496,7 @@
               <td>
                 <div class="cmd-cell">
                   <span class="cmd-code">git checkout -b</span>
-                  <button class="copy-icon-btn" onclick="copyText('git checkout -b dev', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
               <td><span class="ex-code">git checkout -b dev</span></td>
@@ -506,7 +506,7 @@
               <td>
                 <div class="cmd-cell">
                   <span class="cmd-code">git switch -c</span>
-                  <button class="copy-icon-btn" onclick="copyText('git switch -c dev', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
               <td><span class="ex-code">git switch -c dev</span></td>
@@ -516,7 +516,7 @@
               <td>
                 <div class="cmd-cell">
                   <span class="cmd-code">git merge</span>
-                  <button class="copy-icon-btn" onclick="copyText('git merge dev', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
               <td><span class="ex-code">git merge dev</span></td>
@@ -526,7 +526,7 @@
               <td>
                 <div class="cmd-cell">
                   <span class="cmd-code">git branch -d</span>
-                  <button class="copy-icon-btn" onclick="copyText('git branch -d dev', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
               <td><span class="ex-code">git branch -d dev</span></td>
@@ -557,7 +557,7 @@
               <td>
                 <div class="cmd-cell">
                   <span class="cmd-code">git remote add</span>
-                  <button class="copy-icon-btn" onclick="copyText('git remote add origin https://github.com/user/repo.git', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
               <td><span class="ex-code">git remote add origin &lt;URL&gt;</span></td>
@@ -567,7 +567,7 @@
               <td>
                 <div class="cmd-cell">
                   <span class="cmd-code">git remote -v</span>
-                  <button class="copy-icon-btn" onclick="copyText('git remote -v', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
               <td><span class="ex-code">git remote -v</span></td>
@@ -577,7 +577,7 @@
               <td>
                 <div class="cmd-cell">
                   <span class="cmd-code">git push -u</span>
-                  <button class="copy-icon-btn" onclick="copyText('git push -u origin main', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
               <td><span class="ex-code">git push -u origin main</span></td>
@@ -587,7 +587,7 @@
               <td>
                 <div class="cmd-cell">
                   <span class="cmd-code">git push</span>
-                  <button class="copy-icon-btn" onclick="copyText('git push', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
               <td><span class="ex-code">git push</span></td>
@@ -597,7 +597,7 @@
               <td>
                 <div class="cmd-cell">
                   <span class="cmd-code">git pull</span>
-                  <button class="copy-icon-btn" onclick="copyText('git pull origin main', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
               <td><span class="ex-code">git pull origin main</span></td>
@@ -607,7 +607,7 @@
               <td>
                 <div class="cmd-cell">
                   <span class="cmd-code">git fetch</span>
-                  <button class="copy-icon-btn" onclick="copyText('git fetch', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
               <td><span class="ex-code">git fetch</span></td>
@@ -638,7 +638,7 @@
               <td>
                 <div class="cmd-cell">
                   <span class="cmd-code">git restore</span>
-                  <button class="copy-icon-btn" onclick="copyText('git restore app.py', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
               <td><span class="ex-code">git restore app.py</span></td>
@@ -648,7 +648,7 @@
               <td>
                 <div class="cmd-cell">
                   <span class="cmd-code">git restore --staged</span>
-                  <button class="copy-icon-btn" onclick="copyText('git restore --staged app.py', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
               <td><span class="ex-code">git restore --staged app.py</span></td>
@@ -658,7 +658,7 @@
               <td>
                 <div class="cmd-cell">
                   <span class="cmd-code">git reset --soft</span>
-                  <button class="copy-icon-btn" onclick="copyText('git reset --soft HEAD~1', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
               <td><span class="ex-code">git reset --soft HEAD~1</span></td>
@@ -668,7 +668,7 @@
               <td>
                 <div class="cmd-cell">
                   <span class="cmd-code">git reset --hard</span>
-                  <button class="copy-icon-btn" onclick="copyText('git reset --hard HEAD~1', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
               <td><span class="ex-code">git reset --hard HEAD~1</span></td>
@@ -678,7 +678,7 @@
               <td>
                 <div class="cmd-cell">
                   <span class="cmd-code">git revert</span>
-                  <button class="copy-icon-btn" onclick="copyText('git revert a1b2c3d', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
               <td><span class="ex-code">git revert a1b2c3d</span></td>
@@ -709,7 +709,7 @@
               <td>
                 <div class="cmd-cell">
                   <span class="cmd-code">git stash</span>
-                  <button class="copy-icon-btn" onclick="copyText('git stash', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
               <td><span class="ex-code">git stash</span></td>
@@ -719,7 +719,7 @@
               <td>
                 <div class="cmd-cell">
                   <span class="cmd-code">git stash pop</span>
-                  <button class="copy-icon-btn" onclick="copyText('git stash pop', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
               <td><span class="ex-code">git stash pop</span></td>
@@ -729,7 +729,7 @@
               <td>
                 <div class="cmd-cell">
                   <span class="cmd-code">git stash list</span>
-                  <button class="copy-icon-btn" onclick="copyText('git stash list', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
               <td><span class="ex-code">git stash list</span></td>
@@ -746,8 +746,10 @@
   </div>
 
   <script>
-    function copyText(text, btn) {
-      navigator.clipboard.writeText(text).then(() => {
+    function copyCmd(btn) {
+      const cmdCell = btn.closest('.cmd-cell');
+      const cmdText = cmdCell.querySelector('.cmd-code').innerText.trim();
+      navigator.clipboard.writeText(cmdText).then(() => {
         btn.classList.add('copied');
         setTimeout(() => {
           btn.classList.remove('copied');
