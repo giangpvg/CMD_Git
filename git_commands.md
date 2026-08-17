@@ -25,6 +25,7 @@ Tài liệu tra cứu các lệnh Git & GitHub.
 | `git add` | `git add app.py` | Thêm file `app.py` vào Staging Area |
 | `git add .` | `git add .` | Thêm tất cả các file đã thay đổi vào Staging Area |
 | `git commit -m` | `git commit -m "commit"` | Lưu phiên bản (commit) kèm thông điệp mô tả |
+| `git commit -am` | `git commit -am "Add ssh cmd"` | Lệnh gộp vừa `git add` (tất cả file đã theo dõi) vừa `commit` nhanh |
 | `git log` | `git log --oneline` | Xem lịch sử các lần commit dạng 1 dòng ngắn gọn |
 | `git diff` | `git diff` | Xem chi tiết nội dung thay đổi chưa add |
 
