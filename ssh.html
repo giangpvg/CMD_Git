@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SSH & Remote Commands Cheatsheet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #f7f9fa;
+      --card-bg: #ffffff;
+      --border-color: #222222;
+      --text-color: #111111;
+      --text-muted: #555555;
+      --code-bg: #f0f3f6;
+      --accent-color: #0969da;
+      --success-color: #1a7f37;
+      --font-hand: 'Comic Neue', cursive, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-hand);
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-size: 0.95rem;
+      line-height: 1.4;
+      padding: 1.5rem 1rem;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 1.2rem;
+    }
+
+    header h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--text-color);
+      margin-bottom: 0.8rem;
+    }
+
+    /* Page Navigation Tabs */
+    .nav-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-bottom: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-tab {
+      font-family: var(--font-hand);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-color);
+      text-decoration: none;
+      padding: 0.4rem 1.1rem;
+      border: 1.5px solid var(--border-color);
+      border-radius: 20px;
+      background: var(--card-bg);
+      transition: all 0.15s ease;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+    }
+
+    .nav-tab:hover {
+      background: #e9ecef;
+      transform: translateY(-1px);
+    }
+
+    .nav-tab.active {
+      background: var(--border-color);
+      color: #ffffff;
+    }
+
+    /* Controls Bar */
+    .controls-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.2rem;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .toggle-all-btns {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .btn-action {
+      font-family: var(--font-hand);
+      font-size: 0.9rem;
+      font-weight: 700;
+      background: #ffffff;
+      border: 1.5px solid var(--border-color);
+      padding: 0.3rem 0.7rem;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+      transition: all 0.15s ease;
+    }
+
+    .btn-action:hover {
+      background: #f0f2f5;
+      transform: translateY(-1px);
+    }
+
+    .search-box {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 0.45rem 0.9rem;
+      font-size: 0.95rem;
+      font-family: var(--font-hand);
+      border-radius: 8px;
+      border: 1.5px solid var(--border-color);
+      background-color: var(--card-bg);
+      color: var(--text-color);
+      outline: none;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+    }
+
+    .search-box input:focus {
+      border-color: var(--accent-color);
+    }
+
+    /* Collapsible Group (Details / Summary) */
+    details.group-block {
+      margin-bottom: 1.1rem;
+    }
+
+    summary.group-summary {
+      font-size: 1.12rem;
+      font-weight: 700;
+      padding: 0.4rem 0.6rem;
+      cursor: pointer;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      border-radius: 8px;
+      transition: background-color 0.15s ease;
+      list-style: none;
+    }
+
+    summary.group-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary.group-summary:hover {
+      background-color: rgba(0, 0, 0, 0.04);
+    }
+
+    /* Custom Toggle Arrow icon */
+    .arrow-icon {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      transition: transform 0.2s ease;
+      transform: rotate(-90deg);
+    }
+
+    details[open] summary .arrow-icon {
+      transform: rotate(0deg);
+    }
+
+    /* Sketch Card Table Styling */
+    .sketch-table-card {
+      background-color: var(--card-bg);
+      border: 1.5px solid var(--border-color);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+      margin-top: 0.5rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    th {
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 0.55rem 0.8rem;
+      border-bottom: 1.5px solid var(--border-color);
+      border-right: 1.5px solid var(--border-color);
+      background-color: #fafafa;
+      text-align: center;
+    }
+
+    th:last-child {
+      border-right: none;
+    }
+
+    td {
+      padding: 0.55rem 0.8rem;
+      border-bottom: 1px solid var(--border-color);
+      border-right: 1.5px solid var(--border-color);
+      vertical-align: middle;
+      font-size: 0.95rem;
+    }
+
+    td:last-child {
+      border-right: none;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Column Widths */
+    .col-cmd { width: 35%; }
+    .col-ex { width: 28%; }
+    .col-desc { width: 37%; }
+
+    /* Command Cell with Inline Copy Icon */
+    .cmd-cell {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-weight: 700;
+    }
+
+    .cmd-code {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.88rem;
+      color: #000000;
+    }
+
+    .ex-code {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.88rem;
+      color: #1a0dab;
+      word-break: break-word;
+    }
+
+    /* Copy Button Styled Like Sketch Box */
+    .copy-icon-btn {
+      background: #f0f2f5;
+      border: 1.2px solid #333;
+      border-radius: 5px;
+      padding: 2px 5px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+      color: #333;
+      position: relative;
+    }
+
+    .copy-icon-btn:hover {
+      background: #e2e5e9;
+      transform: scale(1.08);
+      border-color: #000;
+    }
+
+    .copy-icon-btn.copied {
+      background: var(--success-color);
+      border-color: var(--success-color);
+      color: #ffffff;
+    }
+
+    .copy-icon-btn svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    /* Tooltip */
+    .copy-icon-btn::after {
+      content: 'Copy';
+      position: absolute;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #222;
+      color: #fff;
+      font-size: 0.7rem;
+      padding: 2px 5px;
+      border-radius: 4px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+      white-space: nowrap;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .copy-icon-btn:hover::after {
+      opacity: 1;
+    }
+
+    .copy-icon-btn.copied::after {
+      content: 'Đã sao chép!';
+      opacity: 1;
+      background: var(--success-color);
+    }
+
+    footer {
+      text-align: center;
+      color: var(--text-muted);
+      margin-top: 1.8rem;
+      font-size: 0.88rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Bảng Lệnh Git, Docker & SSH</h1>
+      <nav class="nav-tabs">
+        <a href="index.html" class="nav-tab">Git & GitHub</a>
+        <a href="docker.html" class="nav-tab">Docker & Compose</a>
+        <a href="ssh.html" class="nav-tab active">SSH & Remote</a>
+      </nav>
+    </header>
+
+    <div class="controls-bar">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="🔍 Tìm kiếm câu lệnh...">
+      </div>
+      <div class="toggle-all-btns">
+        <button class="btn-action" onclick="setAllDetails(true)">▼ Mở tất cả</button>
+        <button class="btn-action" onclick="setAllDetails(false)">▶ Thu gọn tất cả</button>
+      </div>
+    </div>
+
+    <!-- Group 1 -->
+    <details class="group-block" open>
+      <summary class="group-summary">
+        <svg class="arrow-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
+        1. Kết Nối SSH Cơ Bản (Basic SSH Connection)
+      </summary>
+      <div class="sketch-table-card">
+        <table>
+          <thead>
+            <tr>
+              <th class="col-cmd">câu lệnh chung</th>
+              <th class="col-ex">Ví dụ</th>
+              <th class="col-desc">Ý nghĩa / Khi nào dùng?</th>
+            </tr>
+          </thead>
+          <tbody class="command-table">
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">ssh</span>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">ssh root@192.168.1.100</span></td>
+              <td>Kết nối SSH tới server từ xa bằng tên người dùng và IP/domain.</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">ssh -p</span>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">ssh -p 2222 root@192.168.1.100</span></td>
+              <td>Kết nối SSH qua cổng (port) tùy chỉnh khác port 22 mặc định.</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">ssh -i</span>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">ssh -i ~/.ssh/my_key.pem root@server</span></td>
+              <td>Kết nối SSH sử dụng file khóa riêng tư (Private Key / PEM file).</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">ssh -v</span>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">ssh -v root@192.168.1.100</span></td>
+              <td>Chế độ Debug (Verbose) hiển thị chi tiết tiến trình kết nối để sửa lỗi.</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">exit</span>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">exit</span></td>
+              <td>Thoát khỏi phiên làm việc SSH từ xa và quay lại terminal local.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+
+    <!-- Group 2 -->
+    <details class="group-block" open>
+      <summary class="group-summary">
+        <svg class="arrow-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
+        2. Quản Lý Khóa SSH & Xác Thực (SSH Keys & Auth)
+      </summary>
+      <div class="sketch-table-card">
+        <table>
+          <thead>
+            <tr>
+              <th class="col-cmd">câu lệnh chung</th>
+              <th class="col-ex">Ví dụ</th>
+              <th class="col-desc">Ý nghĩa / Khi nào dùng?</th>
+            </tr>
+          </thead>
+          <tbody class="command-table">
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">ssh-keygen -t rsa -b 4096</span>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">ssh-keygen -t rsa -b 4096 -C "email@example.com"</span></td>
+              <td>Tạo cặp khóa SSH mới (RSA 4096 bit) kèm ghi chú email.</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">ssh-keygen -t ed25519</span>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">ssh-keygen -t ed25519 -C "email@example.com"</span></td>
+              <td>Tạo cặp khóa SSH Ed25519 hiện đại, vừa ngắn vừa bảo mật nhất.</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">ssh-copy-id</span>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">ssh-copy-id root@192.168.1.100</span></td>
+              <td>Tự động copy Public Key lên server để đăng nhập không cần gõ mật khẩu.</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">ssh-add</span>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">ssh-add ~/.ssh/id_rsa</span></td>
+              <td>Thêm SSH Private Key vào SSH Agent để quản lý xác thực tự động.</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">ssh-add -l</span>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">ssh-add -l</span></td>
+              <td>Liệt kê danh sách các SSH Key đang được nạp trong SSH Agent.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+
+    <!-- Group 3 -->
+    <details class="group-block" open>
+      <summary class="group-summary">
+        <svg class="arrow-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
+        3. Truyền / Sao Chép File (SCP & rsync)
+      </summary>
+      <div class="sketch-table-card">
+        <table>
+          <thead>
+            <tr>
+              <th class="col-cmd">câu lệnh chung</th>
+              <th class="col-ex">Ví dụ</th>
+              <th class="col-desc">Ý nghĩa / Khi nào dùng?</th>
+            </tr>
+          </thead>
+          <tbody class="command-table">
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">scp</span>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">scp file.txt root@192.168.1.100:/var/www/</span></td>
+              <td>Sao chép 1 file từ máy local lên server từ xa.</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">scp</span>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">scp root@192.168.1.100:/var/log/app.log ./</span></td>
+              <td>Tải 1 file từ server từ xa về máy local.</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">scp -r</span>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">scp -r ./my_folder root@192.168.1.100:/var/www/</span></td>
+              <td>Sao chép toàn bộ thư mục (recursive) lên server từ xa.</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">rsync -avz</span>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">rsync -avz ./dist/ root@server:/var/www/html/</span></td>
+              <td>Đồng bộ file/thư mục thông minh (chỉ truyền các file có thay đổi, nén dữ liệu).</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">rsync -avz -e</span>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">rsync -avz -e "ssh -p 2222" ./dist/ root@server:/app/</span></td>
+              <td>Đồng bộ file rsync qua SSH kết nối cổng (port) tùy chỉnh.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+
+    <!-- Group 4 -->
+    <details class="group-block" open>
+      <summary class="group-summary">
+        <svg class="arrow-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
+        4. Cấu Hình SSH Config (~/.ssh/config)
+      </summary>
+      <div class="sketch-table-card">
+        <table>
+          <thead>
+            <tr>
+              <th class="col-cmd">câu lệnh chung</th>
+              <th class="col-ex">Ví dụ</th>
+              <th class="col-desc">Ý nghĩa / Khi nào dùng?</th>
+            </tr>
+          </thead>
+          <tbody class="command-table">
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">nano ~/.ssh/config</span>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">nano ~/.ssh/config</span></td>
+              <td>Chỉnh sửa file cấu hình SSH local để tạo tên gọi tắt (alias) cho các server.</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">ssh</span>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">ssh myserver</span></td>
+              <td>Kết nối nhanh tới server bằng Alias rút gọn đã định nghĩa trong config.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+
+    <!-- Group 5 -->
+    <details class="group-block" open>
+      <summary class="group-summary">
+        <svg class="arrow-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
+        5. Tunneling & Port Forwarding (Chuyển Hướng Cổng)
+      </summary>
+      <div class="sketch-table-card">
+        <table>
+          <thead>
+            <tr>
+              <th class="col-cmd">câu lệnh chung</th>
+              <th class="col-ex">Ví dụ</th>
+              <th class="col-desc">Ý nghĩa / Khi nào dùng?</th>
+            </tr>
+          </thead>
+          <tbody class="command-table">
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">ssh -L</span>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">ssh -L 8080:localhost:80 root@192.168.1.100</span></td>
+              <td>Local Port Forwarding: Ánh xạ cổng server (port 80) về cổng máy local (8080).</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">ssh -R</span>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">ssh -R 9000:localhost:3000 root@server</span></td>
+              <td>Remote Port Forwarding: Ánh xạ dịch vụ máy local (port 3000) ra ngoài server.</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">ssh -D</span>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">ssh -D 1080 root@192.168.1.100</span></td>
+              <td>Dynamic Port Forwarding (Tạo SOCKS Proxy bảo mật qua SSH).</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">ssh -N -f</span>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">ssh -N -f -L 8080:localhost:80 root@server</span></td>
+              <td>Chạy SSH Tunnel dưới nền (Background mode) mà không mở giao diện terminal.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+
+    <!-- Group 6 -->
+    <details class="group-block" open>
+      <summary class="group-summary">
+        <svg class="arrow-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
+        6. Quản Lý Tiến Trình Từ Xa (Remote Commands & Sessions)
+      </summary>
+      <div class="sketch-table-card">
+        <table>
+          <thead>
+            <tr>
+              <th class="col-cmd">câu lệnh chung</th>
+              <th class="col-ex">Ví dụ</th>
+              <th class="col-desc">Ý nghĩa / Khi nào dùng?</th>
+            </tr>
+          </thead>
+          <tbody class="command-table">
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">ssh</span>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">ssh root@192.168.1.100 "df -h"</span></td>
+              <td>Thực thi trực tiếp 1 câu lệnh trên server từ xa rồi thoát ngay.</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">nohup</span>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">nohup python3 app.py &amp;</span></td>
+              <td>Chạy chương trình dưới nền trên server ngay cả khi ngắt kết nối SSH.</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">screen -S</span>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">screen -S mysession</span></td>
+              <td>Tạo phiên làm việc Screen mới giữ tác vụ chạy ngầm độc lập.</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">screen -r</span>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">screen -r mysession</span></td>
+              <td>Quay trở lại phiên Screen đã tạo trước đó.</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">tmux new -s</span>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">tmux new -s mysession</span></td>
+              <td>Tạo phiên làm việc Tmux hiện đại chống ngắt kết nối SSH.</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">tmux a -t</span>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">tmux a -t mysession</span></td>
+              <td>Reattach kết nối lại vào phiên Tmux đang chạy.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+
+    <footer>
+      <p>SSH & Remote Commands Cheatsheet</p>
+    </footer>
+  </div>
+
+  <script>
+    function copyCmd(btn) {
+      const cmdCell = btn.closest('.cmd-cell');
+      const cmdText = cmdCell.querySelector('.cmd-code').innerText.trim();
+      navigator.clipboard.writeText(cmdText).then(() => {
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.classList.remove('copied');
+        }, 1500);
+      }).catch(err => {
+        console.error('Lỗi khi sao chép:', err);
+      });
+    }
+
+    function setAllDetails(openState) {
+      document.querySelectorAll('details.group-block').forEach(el => {
+        el.open = openState;
+      });
+    }
+
+    // Filter functionality
+    document.getElementById('searchInput').addEventListener('input', function(e) {
+      const term = e.target.value.toLowerCase();
+      
+      document.querySelectorAll('details.group-block').forEach(block => {
+        const rows = block.querySelectorAll('.command-table tr');
+        let hasMatch = false;
+
+        rows.forEach(row => {
+          const text = row.innerText.toLowerCase();
+          const match = text.includes(term);
+          row.style.display = match ? '' : 'none';
+          if (match) hasMatch = true;
+        });
+
+        if (term !== '') {
+          block.style.display = hasMatch ? '' : 'none';
+          if (hasMatch) block.open = true;
+        } else {
+          block.style.display = '';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
