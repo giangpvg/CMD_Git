@@ -216,6 +216,7 @@
       border-right: 1.5px solid var(--border-color);
       vertical-align: middle;
       font-size: 0.95rem;
+      position: relative;
     }
 
     td:last-child {
@@ -231,12 +232,13 @@
     .col-ex { width: 28%; }
     .col-desc { width: 37%; }
 
-    /* Command Cell with Inline Copy Icon */
+    /* Command Cell */
     .cmd-cell {
-      display: inline-flex;
+      display: flex;
       align-items: center;
-      gap: 0.4rem;
+      padding-right: 28px;
       font-weight: 700;
+      width: 100%;
     }
 
     .cmd-code {
@@ -252,8 +254,11 @@
       word-break: break-word;
     }
 
-    /* Copy Button Styled Like Sketch Box */
+    /* Copy Button Positioned at Top Right */
     .copy-icon-btn {
+      position: absolute;
+      top: 6px;
+      right: 6px;
       background: #f0f2f5;
       border: 1.2px solid #333;
       border-radius: 5px;
@@ -264,7 +269,6 @@
       justify-content: center;
       transition: all 0.15s ease;
       color: #333;
-      position: relative;
     }
 
     .copy-icon-btn:hover {
