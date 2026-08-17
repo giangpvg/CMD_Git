@@ -11,14 +11,14 @@ Tài liệu tra cứu các lệnh Docker & Docker Compose.
 | :--- | :--- | :--- |
 | `docker compose up -d` | `docker compose up -d` | Khởi chạy các container dưới nền (detached mode). Dùng khi muốn chạy nhanh dự án mà không cần thay đổi code/Dockerfile. |
 | `docker compose up --build -d` | `docker compose up --build -d` | Build lại Image và chạy dưới nền. Dùng nhiều nhất khi vừa sửa code backend, Dockerfile hoặc requirements.txt. |
-| `docker compose -f <path> --env-file <path> up -d` | `docker compose -f prod.yml --env-file .env.prod up -d` | Chạy docker compose với file cấu hình và file môi trường tùy chọn. |
+| `docker compose -f` | `docker compose -f prod.yml --env-file .env.prod up -d` | Chạy docker compose với file cấu hình và file môi trường tùy chọn. |
 | `docker compose down` | `docker compose down` | Dừng toàn bộ các container và xóa mạng nội bộ (network) vừa tạo để giải phóng RAM/CPU. |
 | `docker compose down -v` | `docker compose down -v` | Dừng container và xóa sạch luôn toàn bộ volume dữ liệu đã mount (Cẩn thận mất DB local!). |
 | `docker compose ps` | `docker compose ps` | Xem trạng thái các container trong dự án (kiểm tra container nào Up hay bị lỗi Exit/Restarting). |
 | `docker compose logs -f` | `docker compose logs -f` | Xem logs (nhật ký chạy) thời gian thực của tất cả các dịch vụ trong dự án. |
-| `docker compose logs -f <service_name>` | `docker compose logs -f orchestrator` | Xem logs thời gian thực của riêng một dịch vụ cụ thể. |
-| `docker compose restart <service_name>` | `docker compose restart orchestrator` | Khởi động lại một dịch vụ cụ thể mà không làm ảnh hưởng tới các dịch vụ khác. |
-| `docker compose exec <service_name> bash` | `docker compose exec orchestrator bash` | Đi vào bên trong shell của container đang chạy để debug, kiểm tra file trực tiếp. |
+| `docker compose logs -f` | `docker compose logs -f orchestrator` | Xem logs thời gian thực của riêng một dịch vụ cụ thể. |
+| `docker compose restart` | `docker compose restart orchestrator` | Khởi động lại một dịch vụ cụ thể mà không làm ảnh hưởng tới các dịch vụ khác. |
+| `docker compose exec` | `docker compose exec orchestrator bash` | Đi vào bên trong shell của container đang chạy để debug, kiểm tra file trực tiếp. |
 
 </details>
 
