@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Git & GitHub Commands Cheatsheet</title>
+  <title>Docker & Compose Commands Cheatsheet</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -326,8 +326,8 @@
     <header>
       <h1>Bảng Lệnh Git & Docker</h1>
       <nav class="nav-tabs">
-        <a href="index.html" class="nav-tab active">Git & GitHub</a>
-        <a href="docker.html" class="nav-tab">Docker & Compose</a>
+        <a href="index.html" class="nav-tab">Git & GitHub</a>
+        <a href="docker.html" class="nav-tab active">Docker & Compose</a>
       </nav>
     </header>
 
@@ -345,7 +345,7 @@
     <details class="group-block" open>
       <summary class="group-summary">
         <svg class="arrow-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
-        1. Cấu Hình Ban Đầu & Khởi Tạo Dự Án
+        1. Docker Compose (Quản Lý Dự Án Đa Dịch Vụ)
       </summary>
       <div class="sketch-table-card">
         <table>
@@ -353,49 +353,109 @@
             <tr>
               <th class="col-cmd">câu lệnh chung</th>
               <th class="col-ex">Ví dụ</th>
-              <th class="col-desc">Ý nghĩa</th>
+              <th class="col-desc">Ý nghĩa / Khi nào dùng?</th>
             </tr>
           </thead>
           <tbody class="command-table">
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git config --global</span>
+                  <span class="cmd-code">docker compose up -d</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git config --global user.name "Nguyen Van A"</span></td>
-              <td>Cấu hình tên người dùng trên máy local</td>
+              <td><span class="ex-code">docker compose up -d</span></td>
+              <td>Khởi chạy các container dưới nền (detached mode). Dùng khi muốn chạy nhanh dự án mà không cần thay đổi code/Dockerfile.</td>
             </tr>
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git config --global</span>
+                  <span class="cmd-code">docker compose up --build -d</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git config --global user.email "a@example.com"</span></td>
-              <td>Cấu hình email người dùng trên máy local</td>
+              <td><span class="ex-code">docker compose up --build -d</span></td>
+              <td>Build lại Image và chạy dưới nền. Dùng nhiều nhất khi vừa sửa code backend, Dockerfile hoặc requirements.txt.</td>
             </tr>
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git init</span>
+                  <span class="cmd-code">docker compose -f &lt;path&gt; --env-file &lt;path&gt; up -d</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git init</span></td>
-              <td>Khởi tạo kho chứa Git mới tại thư mục</td>
+              <td><span class="ex-code">docker compose -f prod.yml --env-file .env.prod up -d</span></td>
+              <td>Chạy docker compose với file cấu hình và file môi trường tùy chọn từ bất kỳ đường dẫn nào.</td>
             </tr>
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git clone</span>
+                  <span class="cmd-code">docker compose down</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git clone https://github.com/user/repo.git</span></td>
-              <td>Sao chép repository từ GitHub về máy local</td>
+              <td><span class="ex-code">docker compose down</span></td>
+              <td>Dừng toàn bộ các container và xóa mạng nội bộ (network) vừa tạo để giải phóng RAM/CPU.</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">docker compose down -v</span>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">docker compose down -v</span></td>
+              <td>Dừng container và xóa sạch luôn toàn bộ volume dữ liệu đã mount (Cẩn thận mất DB local!).</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">docker compose ps</span>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">docker compose ps</span></td>
+              <td>Xem trạng thái các container trong dự án (kiểm tra container nào Up hay bị lỗi Exit/Restarting).</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">docker compose logs -f</span>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">docker compose logs -f</span></td>
+              <td>Xem logs (nhật ký chạy) thời gian thực của tất cả các dịch vụ trong dự án.</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">docker compose logs -f &lt;service_name&gt;</span>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">docker compose logs -f orchestrator</span></td>
+              <td>Xem logs thời gian thực của riêng một dịch vụ cụ thể.</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">docker compose restart &lt;service_name&gt;</span>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">docker compose restart orchestrator</span></td>
+              <td>Khởi động lại một dịch vụ cụ thể mà không làm ảnh hưởng tới các dịch vụ khác.</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">docker compose exec &lt;service_name&gt; bash</span>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">docker compose exec orchestrator bash</span></td>
+              <td>Đi vào bên trong shell của container đang chạy để debug, kiểm tra file trực tiếp.</td>
             </tr>
           </tbody>
         </table>
@@ -406,7 +466,7 @@
     <details class="group-block" open>
       <summary class="group-summary">
         <svg class="arrow-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
-        2. Quy Trình Làm Việc Cơ Bản (Workflow)
+        2. Docker CLI Cơ Bản (Quản Lý Container Đơn Lẻ)
       </summary>
       <div class="sketch-table-card">
         <table>
@@ -414,69 +474,79 @@
             <tr>
               <th class="col-cmd">câu lệnh chung</th>
               <th class="col-ex">Ví dụ</th>
-              <th class="col-desc">Ý nghĩa</th>
+              <th class="col-desc">Ý nghĩa / Khi nào dùng?</th>
             </tr>
           </thead>
           <tbody class="command-table">
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git status</span>
+                  <span class="cmd-code">docker ps</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git status</span></td>
-              <td>Kiểm tra trạng thái các file (Modified, Staged, Untracked)</td>
+              <td><span class="ex-code">docker ps</span></td>
+              <td>Liệt kê danh sách các container đang chạy trên toàn bộ hệ thống.</td>
             </tr>
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git add</span>
+                  <span class="cmd-code">docker ps -a</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git add app.py</span></td>
-              <td>Thêm file `app.py` vào Staging Area</td>
+              <td><span class="ex-code">docker ps -a</span></td>
+              <td>Liệt kê tất cả container trên máy (bao gồm cả container đang chạy lẫn đã dừng).</td>
             </tr>
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git add .</span>
+                  <span class="cmd-code">docker run -d -p</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git add .</span></td>
-              <td>Thêm tất cả các file đã thay đổi vào Staging Area</td>
+              <td><span class="ex-code">docker run -d -p 8080:80 --name my-web nginx:alpine</span></td>
+              <td>Tải và chạy một container mới từ Image trên Docker Hub.</td>
             </tr>
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git commit -m</span>
+                  <span class="cmd-code">docker stop</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git commit -m "commit"</span></td>
-              <td>Lưu phiên bản (commit) kèm thông điệp mô tả</td>
+              <td><span class="ex-code">docker stop deploy-orchestrator-1</span></td>
+              <td>Dừng một container đang chạy.</td>
             </tr>
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git log</span>
+                  <span class="cmd-code">docker start</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git log --oneline</span></td>
-              <td>Xem lịch sử các lần commit dạng 1 dòng ngắn gọn</td>
+              <td><span class="ex-code">docker start deploy-orchestrator-1</span></td>
+              <td>Khởi động lại một container đã bị dừng trước đó.</td>
             </tr>
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git diff</span>
+                  <span class="cmd-code">docker rm</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git diff</span></td>
-              <td>Xem chi tiết nội dung thay đổi chưa add</td>
+              <td><span class="ex-code">docker rm deploy-orchestrator-1</span></td>
+              <td>Xóa một container đã dừng (giúp giải phóng tên container).</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">docker rm -f</span>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">docker rm -f my-web</span></td>
+              <td>Ép buộc dừng và xóa container ngay lập tức (kể cả đang chạy).</td>
             </tr>
           </tbody>
         </table>
@@ -487,7 +557,7 @@
     <details class="group-block" open>
       <summary class="group-summary">
         <svg class="arrow-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
-        3. Quản Lý Nhánh (Branching & Merging)
+        3. Quản Lý Docker Images & Volumes
       </summary>
       <div class="sketch-table-card">
         <table>
@@ -495,79 +565,49 @@
             <tr>
               <th class="col-cmd">câu lệnh chung</th>
               <th class="col-ex">Ví dụ</th>
-              <th class="col-desc">Ý nghĩa</th>
+              <th class="col-desc">Ý nghĩa / Khi nào dùng?</th>
             </tr>
           </thead>
           <tbody class="command-table">
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git branch</span>
+                  <span class="cmd-code">docker images</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git branch</span></td>
-              <td>Xem danh sách các nhánh hiện có</td>
+              <td><span class="ex-code">docker images</span></td>
+              <td>Hiển thị tất cả các Docker Images hiện có trên máy và kích thước của chúng.</td>
             </tr>
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git branch</span>
+                  <span class="cmd-code">docker rmi</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git branch dev</span></td>
-              <td>Tạo nhánh mới có tên `dev`</td>
+              <td><span class="ex-code">docker rmi nginx:alpine</span></td>
+              <td>Xóa một image khỏi máy để giải phóng dung lượng ổ cứng.</td>
             </tr>
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git checkout</span>
+                  <span class="cmd-code">docker volume ls</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git checkout main</span></td>
-              <td>Chuyển sang làm việc ở nhánh `main`</td>
+              <td><span class="ex-code">docker volume ls</span></td>
+              <td>Liệt kê tất cả các volume dữ liệu độc lập lưu trữ lâu dài.</td>
             </tr>
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git checkout -b</span>
+                  <span class="cmd-code">docker volume rm</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git checkout -b dev</span></td>
-              <td>Tạo nhánh mới tên `dev` và chuyển sang ngay</td>
-            </tr>
-            <tr>
-              <td>
-                <div class="cmd-cell">
-                  <span class="cmd-code">git switch -c</span>
-                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
-                </div>
-              </td>
-              <td><span class="ex-code">git switch -c dev</span></td>
-              <td>(Cú pháp mới) Tạo và chuyển sang nhánh `dev`</td>
-            </tr>
-            <tr>
-              <td>
-                <div class="cmd-cell">
-                  <span class="cmd-code">git merge</span>
-                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
-                </div>
-              </td>
-              <td><span class="ex-code">git merge dev</span></td>
-              <td>Gộp nhánh `dev` vào nhánh hiện tại</td>
-            </tr>
-            <tr>
-              <td>
-                <div class="cmd-cell">
-                  <span class="cmd-code">git branch -d</span>
-                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
-                </div>
-              </td>
-              <td><span class="ex-code">git branch -d dev</span></td>
-              <td>Xóa nhánh `dev` sau khi đã gộp</td>
+              <td><span class="ex-code">docker volume rm my_db_data</span></td>
+              <td>Xóa một volume dữ liệu cụ thể (chỉ dùng khi chắc chắn không dùng nữa).</td>
             </tr>
           </tbody>
         </table>
@@ -578,7 +618,7 @@
     <details class="group-block" open>
       <summary class="group-summary">
         <svg class="arrow-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
-        4. Tương Tác Với GitHub (Remote Operations)
+        4. Dọn Dẹp Hệ Thống (Giải Phong Dung Lượng Ổ Cứng)
       </summary>
       <div class="sketch-table-card">
         <table>
@@ -586,69 +626,39 @@
             <tr>
               <th class="col-cmd">câu lệnh chung</th>
               <th class="col-ex">Ví dụ</th>
-              <th class="col-desc">Ý nghĩa</th>
+              <th class="col-desc">Ý nghĩa / Khi nào dùng?</th>
             </tr>
           </thead>
           <tbody class="command-table">
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git remote add</span>
+                  <span class="cmd-code">docker system prune</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git remote add origin &lt;URL&gt;</span></td>
-              <td>Liên kết kho chứa local với repository trên GitHub</td>
+              <td><span class="ex-code">docker system prune</span></td>
+              <td>Xóa các Container đã dừng, Network không dùng và các Image không tag (dangling).</td>
             </tr>
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git remote -v</span>
+                  <span class="cmd-code">docker system prune -a</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git remote -v</span></td>
-              <td>Xem danh sách các kho chứa từ xa đã liên kết</td>
+              <td><span class="ex-code">docker system prune -a</span></td>
+              <td>Xóa sạch hơn (bao gồm cả các Image cũ không được container nào sử dụng).</td>
             </tr>
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git push -u</span>
+                  <span class="cmd-code">docker system prune -a --volumes</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git push -u origin main</span></td>
-              <td>Đẩy code từ máy local lên kho chứa GitHub lần đầu</td>
-            </tr>
-            <tr>
-              <td>
-                <div class="cmd-cell">
-                  <span class="cmd-code">git push</span>
-                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
-                </div>
-              </td>
-              <td><span class="ex-code">git push</span></td>
-              <td>Đẩy các commit mới nhất lên GitHub</td>
-            </tr>
-            <tr>
-              <td>
-                <div class="cmd-cell">
-                  <span class="cmd-code">git pull</span>
-                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
-                </div>
-              </td>
-              <td><span class="ex-code">git pull origin main</span></td>
-              <td>Kéo dữ liệu mới nhất từ GitHub về máy và tự động gộp</td>
-            </tr>
-            <tr>
-              <td>
-                <div class="cmd-cell">
-                  <span class="cmd-code">git fetch</span>
-                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
-                </div>
-              </td>
-              <td><span class="ex-code">git fetch</span></td>
-              <td>Tải thông tin mới nhất từ GitHub về (chưa gộp)</td>
+              <td><span class="ex-code">docker system prune -a --volumes</span></td>
+              <td>Xóa cực kỳ sạch sẽ (Xóa cả Volume không dùng - Cẩn thận mất Database local!).</td>
             </tr>
           </tbody>
         </table>
@@ -659,7 +669,7 @@
     <details class="group-block" open>
       <summary class="group-summary">
         <svg class="arrow-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
-        5. Hoàn Tác & Phục Hồi (Undo & Reset)
+        5. Gỡ Lỗi & Giám Sát Hệ Thống (Debugging & Stats)
       </summary>
       <div class="sketch-table-card">
         <table>
@@ -667,59 +677,39 @@
             <tr>
               <th class="col-cmd">câu lệnh chung</th>
               <th class="col-ex">Ví dụ</th>
-              <th class="col-desc">Ý nghĩa</th>
+              <th class="col-desc">Ý nghĩa / Khi nào dùng?</th>
             </tr>
           </thead>
           <tbody class="command-table">
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git restore</span>
+                  <span class="cmd-code">docker stats</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git restore app.py</span></td>
-              <td>Hủy bỏ các thay đổi chưa `add` của file `app.py`</td>
+              <td><span class="ex-code">docker stats</span></td>
+              <td>Xem dung lượng RAM, phần trăm CPU và lưu lượng mạng thời gian thực của từng container.</td>
             </tr>
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git restore --staged</span>
+                  <span class="cmd-code">docker cp</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git restore --staged app.py</span></td>
-              <td>Đưa file `app.py` từ Staging Area về Unstaged</td>
+              <td><span class="ex-code">docker cp container:/app/logs ./host_logs</span></td>
+              <td>Copy file từ Container ra ngoài máy host hoặc ngược lại.</td>
             </tr>
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git reset --soft</span>
+                  <span class="cmd-code">docker inspect</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git reset --soft HEAD~1</span></td>
-              <td>Hủy commit gần nhất nhưng vẫn giữ nguyên code thay đổi</td>
-            </tr>
-            <tr>
-              <td>
-                <div class="cmd-cell">
-                  <span class="cmd-code">git reset --hard</span>
-                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
-                </div>
-              </td>
-              <td><span class="ex-code">git reset --hard HEAD~1</span></td>
-              <td>Hủy hoàn toàn commit gần nhất và toàn bộ code thay đổi</td>
-            </tr>
-            <tr>
-              <td>
-                <div class="cmd-cell">
-                  <span class="cmd-code">git revert</span>
-                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
-                </div>
-              </td>
-              <td><span class="ex-code">git revert a1b2c3d</span></td>
-              <td>Tạo commit mới để đảo ngược thay đổi của commit `a1b2c3d`</td>
+              <td><span class="ex-code">docker inspect deploy-orchestrator-1</span></td>
+              <td>Hiển thị chi tiết cấu hình JSON (mạng, IP, biến môi trường, mount volume).</td>
             </tr>
           </tbody>
         </table>
@@ -730,7 +720,7 @@
     <details class="group-block" open>
       <summary class="group-summary">
         <svg class="arrow-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
-        6. Lưu Tạm Thay Đổi (Stash)
+        6. Công Cụ Đồng Bộ MinIO (MinIO Client - mc)
       </summary>
       <div class="sketch-table-card">
         <table>
@@ -738,39 +728,49 @@
             <tr>
               <th class="col-cmd">câu lệnh chung</th>
               <th class="col-ex">Ví dụ</th>
-              <th class="col-desc">Ý nghĩa</th>
+              <th class="col-desc">Ý nghĩa / Khi nào dùng?</th>
             </tr>
           </thead>
           <tbody class="command-table">
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git stash</span>
+                  <span class="cmd-code">mc alias set</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git stash</span></td>
-              <td>Tạm thời cất giấu các thay đổi chưa commit</td>
+              <td><span class="ex-code">mc alias set serverA http://IP:9000 ACCESS_KEY SECRET_KEY</span></td>
+              <td>Cấu hình thông tin kết nối và xác thực cho MinIO Server.</td>
             </tr>
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git stash pop</span>
+                  <span class="cmd-code">mc mb</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git stash pop</span></td>
-              <td>Lấy lại và áp dụng thay đổi đã cất giấu gần nhất</td>
+              <td><span class="ex-code">mc mb serverB/ten-bucket</span></td>
+              <td>Tạo một bucket mới trên MinIO Server.</td>
             </tr>
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git stash list</span>
+                  <span class="cmd-code">mc mirror</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git stash list</span></td>
-              <td>Xem danh sách tất cả các lần cất giấu (stash)</td>
+              <td><span class="ex-code">mc mirror serverA/ten-bucket serverB/ten-bucket</span></td>
+              <td>Đồng bộ dữ liệu từ bucket nguồn (serverA) sang bucket đích (serverB).</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cmd-cell">
+                  <span class="cmd-code">mc mirror --overwrite --remove</span>
+                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                </div>
+              </td>
+              <td><span class="ex-code">mc mirror --overwrite --remove serverA/bucket serverB/bucket</span></td>
+              <td>Đồng bộ chính xác 100% (bao gồm ghi đè file cũ và xóa file rác trên máy đích).</td>
             </tr>
           </tbody>
         </table>
@@ -778,7 +778,7 @@
     </details>
 
     <footer>
-      <p>Git Commands Cheatsheet</p>
+      <p>Docker & Compose Commands Cheatsheet</p>
     </footer>
   </div>
 
