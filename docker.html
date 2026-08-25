@@ -216,7 +216,6 @@
       border-right: 1.5px solid var(--border-color);
       vertical-align: middle;
       font-size: 0.95rem;
-      position: relative;
     }
 
     td:last-child {
@@ -232,13 +231,12 @@
     .col-ex { width: 28%; }
     .col-desc { width: 37%; }
 
-    /* Command Cell */
+    /* Command Cell with Inline Copy Icon */
     .cmd-cell {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      padding-right: 28px;
+      gap: 0.4rem;
       font-weight: 700;
-      width: 100%;
     }
 
     .cmd-code {
@@ -254,11 +252,8 @@
       word-break: break-word;
     }
 
-    /* Copy Button Positioned at Top Right */
+    /* Copy Button Styled Like Sketch Box */
     .copy-icon-btn {
-      position: absolute;
-      top: 6px;
-      right: 6px;
       background: #f0f2f5;
       border: 1.2px solid #333;
       border-radius: 5px;
@@ -269,6 +264,7 @@
       justify-content: center;
       transition: all 0.15s ease;
       color: #333;
+      position: relative;
     }
 
     .copy-icon-btn:hover {
@@ -329,11 +325,12 @@
 
   <div class="container">
     <header>
-      <h1>Bảng Lệnh Git, Docker & SSH</h1>
+      <h1>Bảng Lệnh Git, Docker, SSH & Ubuntu</h1>
       <nav class="nav-tabs">
         <a href="index.html" class="nav-tab">Git & GitHub</a>
         <a href="docker.html" class="nav-tab active">Docker & Compose</a>
         <a href="ssh.html" class="nav-tab">SSH & Remote</a>
+        <a href="ubuntu.html" class="nav-tab">Ubuntu & Linux</a>
       </nav>
     </header>
 

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Git & GitHub Commands Cheatsheet</title>
+  <title>Ubuntu & Linux Commands Cheatsheet</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -327,10 +327,10 @@
     <header>
       <h1>Bảng Lệnh Git, Docker, SSH & Ubuntu</h1>
       <nav class="nav-tabs">
-        <a href="index.html" class="nav-tab active">Git & GitHub</a>
+        <a href="index.html" class="nav-tab">Git & GitHub</a>
         <a href="docker.html" class="nav-tab">Docker & Compose</a>
         <a href="ssh.html" class="nav-tab">SSH & Remote</a>
-        <a href="ubuntu.html" class="nav-tab">Ubuntu & Linux</a>
+        <a href="ubuntu.html" class="nav-tab active">Ubuntu & Linux</a>
       </nav>
     </header>
 
@@ -348,7 +348,7 @@
     <details class="group-block" open>
       <summary class="group-summary">
         <svg class="arrow-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
-        1. Cấu Hình Ban Đầu & Khởi Tạo Dự Án
+        1. Kiểm Tra Dung Lượng & Ổ Cứng (Disk Usage)
       </summary>
       <div class="sketch-table-card">
         <table>
@@ -356,49 +356,49 @@
             <tr>
               <th class="col-cmd">câu lệnh chung</th>
               <th class="col-ex">Ví dụ</th>
-              <th class="col-desc">Ý nghĩa</th>
+              <th class="col-desc">Ý nghĩa / Khi nào dùng?</th>
             </tr>
           </thead>
           <tbody class="command-table">
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git config --global</span>
+                  <span class="cmd-code">df -h</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git config --global user.name "Nguyen Van A"</span></td>
-              <td>Cấu hình tên người dùng trên máy local</td>
+              <td><span class="ex-code">df -h</span></td>
+              <td>Xem tổng dung lượng đĩa trống / đã dùng của tất cả phân vùng ổ cứng.</td>
             </tr>
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git config --global</span>
+                  <span class="cmd-code">du -h --max-depth=1</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git config --global user.email "a@example.com"</span></td>
-              <td>Cấu hình email người dùng trên máy local</td>
+              <td><span class="ex-code">sudo du -h --max-depth=1 /home/giangpv102/ | sort -h</span></td>
+              <td>Đếm dung lượng từng thư mục con cấp 1 và sắp xếp tăng dần để tìm thư mục nặng nhất.</td>
             </tr>
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git init</span>
+                  <span class="cmd-code">du -sh</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git init</span></td>
-              <td>Khởi tạo kho chứa Git mới tại thư mục</td>
+              <td><span class="ex-code">du -sh /var/log</span></td>
+              <td>Xem tổng dung lượng của một thư mục cụ thể dạng dễ đọc (GB, MB).</td>
             </tr>
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git clone</span>
+                  <span class="cmd-code">lsblk</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git clone https://github.com/user/repo.git</span></td>
-              <td>Sao chép repository từ GitHub về máy local</td>
+              <td><span class="ex-code">lsblk</span></td>
+              <td>Liệt kê cấu trúc danh sách các ổ đĩa và phân vùng ổ cứng dạng cây.</td>
             </tr>
           </tbody>
         </table>
@@ -409,7 +409,7 @@
     <details class="group-block" open>
       <summary class="group-summary">
         <svg class="arrow-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
-        2. Quy Trình Làm Việc Cơ Bản (Workflow)
+        2. Giám Sát Hệ Thống & Tiến Trình (System & Processes)
       </summary>
       <div class="sketch-table-card">
         <table>
@@ -417,79 +417,59 @@
             <tr>
               <th class="col-cmd">câu lệnh chung</th>
               <th class="col-ex">Ví dụ</th>
-              <th class="col-desc">Ý nghĩa</th>
+              <th class="col-desc">Ý nghĩa / Khi nào dùng?</th>
             </tr>
           </thead>
           <tbody class="command-table">
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git status</span>
+                  <span class="cmd-code">htop</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git status</span></td>
-              <td>Kiểm tra trạng thái các file (Modified, Staged, Untracked)</td>
+              <td><span class="ex-code">htop</span></td>
+              <td>Giao diện trực quan giám sát phần trăm CPU, dung lượng RAM và tiến trình thời gian thực.</td>
             </tr>
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git add</span>
+                  <span class="cmd-code">free -h</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git add app.py</span></td>
-              <td>Thêm file `app.py` vào Staging Area</td>
+              <td><span class="ex-code">free -h</span></td>
+              <td>Kiểm tra dung lượng bộ nhớ RAM đang dùng, RAM trống và dung lượng Swap.</td>
             </tr>
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git add .</span>
+                  <span class="cmd-code">ps aux | grep</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git add .</span></td>
-              <td>Thêm tất cả các file đã thay đổi vào Staging Area</td>
+              <td><span class="ex-code">ps aux | grep python</span></td>
+              <td>Tìm kiếm thông tin tiến trình đang chạy theo tên dịch vụ hoặc từ khóa.</td>
             </tr>
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git commit -m</span>
+                  <span class="cmd-code">kill -9</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git commit -m "commit"</span></td>
-              <td>Lưu phiên bản (commit) kèm thông điệp mô tả</td>
+              <td><span class="ex-code">sudo kill -9 1234</span></td>
+              <td>Ép buộc diệt (kill) ngay lập tức tiến trình treo dựa trên Process ID (PID).</td>
             </tr>
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git commit -am</span>
+                  <span class="cmd-code">uptime</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git commit -am "Add ssh cmd"</span></td>
-              <td>Lệnh gộp vừa `git add` (tất cả file đã theo dõi) vừa `commit` nhanh</td>
-            </tr>
-            <tr>
-              <td>
-                <div class="cmd-cell">
-                  <span class="cmd-code">git log</span>
-                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
-                </div>
-              </td>
-              <td><span class="ex-code">git log --oneline</span></td>
-              <td>Xem lịch sử các lần commit dạng 1 dòng ngắn gọn</td>
-            </tr>
-            <tr>
-              <td>
-                <div class="cmd-cell">
-                  <span class="cmd-code">git diff</span>
-                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
-                </div>
-              </td>
-              <td><span class="ex-code">git diff</span></td>
-              <td>Xem chi tiết nội dung thay đổi chưa add</td>
+              <td><span class="ex-code">uptime</span></td>
+              <td>Xem thời gian máy chủ đã bật liên tục và chỉ số nạp trung bình (load average).</td>
             </tr>
           </tbody>
         </table>
@@ -500,7 +480,7 @@
     <details class="group-block" open>
       <summary class="group-summary">
         <svg class="arrow-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
-        3. Quản Lý Nhánh (Branching & Merging)
+        3. Tìm Kiếm, Nén & Quản Lý File (Files & Archives)
       </summary>
       <div class="sketch-table-card">
         <table>
@@ -508,79 +488,59 @@
             <tr>
               <th class="col-cmd">câu lệnh chung</th>
               <th class="col-ex">Ví dụ</th>
-              <th class="col-desc">Ý nghĩa</th>
+              <th class="col-desc">Ý nghĩa / Khi nào dùng?</th>
             </tr>
           </thead>
           <tbody class="command-table">
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git branch</span>
+                  <span class="cmd-code">ls -la</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git branch</span></td>
-              <td>Xem danh sách các nhánh hiện có</td>
+              <td><span class="ex-code">ls -la</span></td>
+              <td>Liệt kê tất cả file/thư mục (bao gồm file ẩn) kèm phân quyền chi tiết.</td>
             </tr>
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git branch</span>
+                  <span class="cmd-code">find</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git branch dev</span></td>
-              <td>Tạo nhánh mới có tên `dev`</td>
+              <td><span class="ex-code">find /var/log -name "*.log" -type f</span></td>
+              <td>Tìm kiếm file theo đường dẫn, đuôi file tên hoặc kích thước.</td>
             </tr>
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git checkout</span>
+                  <span class="cmd-code">grep -rnw</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git checkout main</span></td>
-              <td>Chuyển sang làm việc ở nhánh `main`</td>
+              <td><span class="ex-code">grep -rnw '/path/to/dir/' -e 'pattern'</span></td>
+              <td>Tìm từ khóa xuất hiện bên trong nội dung của tất cả file trong thư mục.</td>
             </tr>
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git checkout -b</span>
+                  <span class="cmd-code">tar -czvf</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git checkout -b dev</span></td>
-              <td>Tạo nhánh mới tên `dev` và chuyển sang ngay</td>
+              <td><span class="ex-code">tar -czvf archive.tar.gz /path/to/folder</span></td>
+              <td>Nén thư mục thành định dạng nén `.tar.gz`.</td>
             </tr>
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git switch -c</span>
+                  <span class="cmd-code">tar -xzvf</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git switch -c dev</span></td>
-              <td>(Cú pháp mới) Tạo và chuyển sang nhánh `dev`</td>
-            </tr>
-            <tr>
-              <td>
-                <div class="cmd-cell">
-                  <span class="cmd-code">git merge</span>
-                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
-                </div>
-              </td>
-              <td><span class="ex-code">git merge dev</span></td>
-              <td>Gộp nhánh `dev` vào nhánh hiện tại</td>
-            </tr>
-            <tr>
-              <td>
-                <div class="cmd-cell">
-                  <span class="cmd-code">git branch -d</span>
-                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
-                </div>
-              </td>
-              <td><span class="ex-code">git branch -d dev</span></td>
-              <td>Xóa nhánh `dev` sau khi đã gộp</td>
+              <td><span class="ex-code">tar -xzvf archive.tar.gz</span></td>
+              <td>Giải nén file nén `.tar.gz`.</td>
             </tr>
           </tbody>
         </table>
@@ -591,7 +551,7 @@
     <details class="group-block" open>
       <summary class="group-summary">
         <svg class="arrow-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
-        4. Tương Tác Với GitHub (Remote Operations)
+        4. Phân Quyền & Người Dùng (Permissions & Ownership)
       </summary>
       <div class="sketch-table-card">
         <table>
@@ -599,69 +559,39 @@
             <tr>
               <th class="col-cmd">câu lệnh chung</th>
               <th class="col-ex">Ví dụ</th>
-              <th class="col-desc">Ý nghĩa</th>
+              <th class="col-desc">Ý nghĩa / Khi nào dùng?</th>
             </tr>
           </thead>
           <tbody class="command-table">
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git remote add</span>
+                  <span class="cmd-code">chmod +x</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git remote add origin &lt;URL&gt;</span></td>
-              <td>Liên kết kho chứa local với repository trên GitHub</td>
+              <td><span class="ex-code">chmod +x script.sh</span></td>
+              <td>Cấp quyền thực thi (executable) cho file kịch bản Shell Script.</td>
             </tr>
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git remote -v</span>
+                  <span class="cmd-code">chmod -R 755</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git remote -v</span></td>
-              <td>Xem danh sách các kho chứa từ xa đã liên kết</td>
+              <td><span class="ex-code">chmod -R 755 /var/www/html</span></td>
+              <td>Đặt quyền truy cập chuẩn 755 đệ quy cho thư mục web.</td>
             </tr>
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git push -u</span>
+                  <span class="cmd-code">chown -R</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git push -u origin main</span></td>
-              <td>Đẩy code từ máy local lên kho chứa GitHub lần đầu</td>
-            </tr>
-            <tr>
-              <td>
-                <div class="cmd-cell">
-                  <span class="cmd-code">git push</span>
-                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
-                </div>
-              </td>
-              <td><span class="ex-code">git push</span></td>
-              <td>Đẩy các commit mới nhất lên GitHub</td>
-            </tr>
-            <tr>
-              <td>
-                <div class="cmd-cell">
-                  <span class="cmd-code">git pull</span>
-                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
-                </div>
-              </td>
-              <td><span class="ex-code">git pull origin main</span></td>
-              <td>Kéo dữ liệu mới nhất từ GitHub về máy và tự động gộp</td>
-            </tr>
-            <tr>
-              <td>
-                <div class="cmd-cell">
-                  <span class="cmd-code">git fetch</span>
-                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
-                </div>
-              </td>
-              <td><span class="ex-code">git fetch</span></td>
-              <td>Tải thông tin mới nhất từ GitHub về (chưa gộp)</td>
+              <td><span class="ex-code">sudo chown -R www-data:www-data /var/www</span></td>
+              <td>Thay đổi quyền sở hữu (User & Group) của file/thư mục.</td>
             </tr>
           </tbody>
         </table>
@@ -672,7 +602,7 @@
     <details class="group-block" open>
       <summary class="group-summary">
         <svg class="arrow-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
-        5. Hoàn Tác & Phục Hồi (Undo & Reset)
+        5. Quản Lý Gói Phần Mềm APT (Package Manager)
       </summary>
       <div class="sketch-table-card">
         <table>
@@ -680,59 +610,39 @@
             <tr>
               <th class="col-cmd">câu lệnh chung</th>
               <th class="col-ex">Ví dụ</th>
-              <th class="col-desc">Ý nghĩa</th>
+              <th class="col-desc">Ý nghĩa / Khi nào dùng?</th>
             </tr>
           </thead>
           <tbody class="command-table">
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git restore</span>
+                  <span class="cmd-code">sudo apt update</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git restore app.py</span></td>
-              <td>Hủy bỏ các thay đổi chưa `add` của file `app.py`</td>
+              <td><span class="ex-code">sudo apt update &amp;&amp; sudo apt upgrade -y</span></td>
+              <td>Cập nhật danh sách phần mềm mới nhất và nâng cấp toàn bộ hệ thống.</td>
             </tr>
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git restore --staged</span>
+                  <span class="cmd-code">sudo apt install</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git restore --staged app.py</span></td>
-              <td>Đưa file `app.py` từ Staging Area về Unstaged</td>
+              <td><span class="ex-code">sudo apt install -y htop curl git</span></td>
+              <td>Cài đặt các phần mềm / gói công cụ mới vào hệ thống Ubuntu.</td>
             </tr>
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git reset --soft</span>
+                  <span class="cmd-code">sudo apt autoremove</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git reset --soft HEAD~1</span></td>
-              <td>Hủy commit gần nhất nhưng vẫn giữ nguyên code thay đổi</td>
-            </tr>
-            <tr>
-              <td>
-                <div class="cmd-cell">
-                  <span class="cmd-code">git reset --hard</span>
-                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
-                </div>
-              </td>
-              <td><span class="ex-code">git reset --hard HEAD~1</span></td>
-              <td>Hủy hoàn toàn commit gần nhất và toàn bộ code thay đổi</td>
-            </tr>
-            <tr>
-              <td>
-                <div class="cmd-cell">
-                  <span class="cmd-code">git revert</span>
-                  <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
-                </div>
-              </td>
-              <td><span class="ex-code">git revert a1b2c3d</span></td>
-              <td>Tạo commit mới để đảo ngược thay đổi của commit `a1b2c3d`</td>
+              <td><span class="ex-code">sudo apt autoremove -y</span></td>
+              <td>Dọn dẹp tự động các gói phụ thuộc cũ thừa không còn được dùng.</td>
             </tr>
           </tbody>
         </table>
@@ -743,7 +653,7 @@
     <details class="group-block" open>
       <summary class="group-summary">
         <svg class="arrow-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
-        6. Lưu Tạm Thay Đổi (Stash)
+        6. Quản Lý Dịch Vụ Systemd (Services & Systemctl)
       </summary>
       <div class="sketch-table-card">
         <table>
@@ -751,39 +661,39 @@
             <tr>
               <th class="col-cmd">câu lệnh chung</th>
               <th class="col-ex">Ví dụ</th>
-              <th class="col-desc">Ý nghĩa</th>
+              <th class="col-desc">Ý nghĩa / Khi nào dùng?</th>
             </tr>
           </thead>
           <tbody class="command-table">
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git stash</span>
+                  <span class="cmd-code">systemctl status</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git stash</span></td>
-              <td>Tạm thời cất giấu các thay đổi chưa commit</td>
+              <td><span class="ex-code">sudo systemctl status nginx</span></td>
+              <td>Kiểm tra trạng thái đang chạy (Active) hay bị lỗi của dịch vụ systemd.</td>
             </tr>
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git stash pop</span>
+                  <span class="cmd-code">systemctl restart</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git stash pop</span></td>
-              <td>Lấy lại và áp dụng thay đổi đã cất giấu gần nhất</td>
+              <td><span class="ex-code">sudo systemctl restart nginx</span></td>
+              <td>Khởi động lại một dịch vụ hệ thống sau khi thay đổi file cấu hình.</td>
             </tr>
             <tr>
               <td>
                 <div class="cmd-cell">
-                  <span class="cmd-code">git stash list</span>
+                  <span class="cmd-code">journalctl -u</span>
                   <button class="copy-icon-btn" onclick="copyCmd(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
                 </div>
               </td>
-              <td><span class="ex-code">git stash list</span></td>
-              <td>Xem danh sách tất cả các lần cất giấu (stash)</td>
+              <td><span class="ex-code">sudo journalctl -u nginx -f</span></td>
+              <td>Xem log trực tiếp thời gian thực của dịch vụ hệ thống để gỡ lỗi.</td>
             </tr>
           </tbody>
         </table>
@@ -791,7 +701,7 @@
     </details>
 
     <footer>
-      <p>Git Commands Cheatsheet</p>
+      <p>Ubuntu & Linux Commands Cheatsheet</p>
     </footer>
   </div>
 

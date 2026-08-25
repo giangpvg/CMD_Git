@@ -2,7 +2,7 @@
 
 > 🌐 **Trang tra cứu trực tuyến (GitHub Pages)**: [https://giangpvg.github.io/CMD_Git](https://giangpvg.github.io/CMD_Git)
 
-Bộ tài liệu tổng hợp và tra cứu nhanh các câu lệnh thông dụng hàng ngày dành cho Lập trình viên và DevOps Engineer, bao gồm các chủ đề về **Git & GitHub**, **Docker**, và **SSH / Quản Lý Server Remote**.
+Bộ tài liệu tổng hợp và tra cứu nhanh các câu lệnh thông dụng hàng ngày dành cho Lập trình viên và DevOps Engineer, bao gồm các chủ đề về **Git & GitHub**, **Docker**, **SSH / Remote Server**, và **Ubuntu / Linux Management**.
 
 ---
 
@@ -15,6 +15,7 @@ Tài liệu được chia thành từng chủ đề riêng biệt với các đ�
 | **Git & GitHub** | [git_commands.md](./git_commands.md) | [🌐 Online](https://giangpvg.github.io/CMD_Git/index.html) / [index.html](./index.html) | Khởi tạo, Workflow, Quản lý nhánh (Branch), Tương tác Remote, Phục hồi (Undo/Reset), Stash |
 | **Docker** | [docker_commands.md](./docker_commands.md) | [🌐 Online](https://giangpvg.github.io/CMD_Git/docker.html) / [docker.html](./docker.html) | Quản lý Container, Images, Docker Compose, Volumes, Network, Dọn dẹp hệ thống |
 | **SSH & Remote Server** | [ssh_commands.md](./ssh_commands.md) | [🌐 Online](https://giangpvg.github.io/CMD_Git/ssh.html) / [ssh.html](./ssh.html) | Kết nối SSH, Quản lý SSH Key, Sao chép file (SCP/Rsync), Tmux/Screen, Tunneling & Port Forwarding |
+| **Ubuntu & Linux** | [ubuntu_commands.md](./ubuntu_commands.md) | [🌐 Online](https://giangpvg.github.io/CMD_Git/ubuntu.html) / [ubuntu.html](./ubuntu.html) | Dung lượng ổ cứng (du/df), Giám sát hệ thống (htop/free/ps), Phân quyền (chmod/chown), Nén file (tar), APT, Systemd |
 
 ---
 
@@ -33,7 +34,7 @@ Bạn có thể nhấp vào các liên kết file `.md` ở danh mục trên đ�
   git clone https://github.com/giangpvg/CMD_Git.git
   cd CMD_Git
   ```
-- Mở file `index.html`, `docker.html`, hoặc `ssh.html` trực tiếp bằng trình duyệt web (Chrome, Firefox, Edge...).
+- Mở file `index.html`, `docker.html`, `ssh.html` hoặc `ubuntu.html` trực tiếp bằng trình duyệt web.
 
 ---
 
@@ -46,9 +47,10 @@ Cmd_git/
 ├── index.html            # Giao diện tra cứu lệnh Git trực quan (Web)
 ├── docker_commands.md     # Bảng tra cứu lệnh Docker (Markdown)
 ├── docker.html           # Giao diện tra cứu lệnh Docker trực quan (Web)
-├── Docker.csv            # Dữ liệu bảng lệnh Docker
 ├── ssh_commands.md        # Bảng tra cứu lệnh SSH & Quản lý Server (Markdown)
-└── ssh.html              # Giao diện tra cứu lệnh SSH trực quan (Web)
+├── ssh.html              # Giao diện tra cứu lệnh SSH trực quan (Web)
+├── ubuntu_commands.md     # Bảng tra cứu lệnh Ubuntu & Linux (Markdown)
+└── ubuntu.html           # Giao diện tra cứu lệnh Ubuntu trực quan (Web)
 ```
 
 ---
